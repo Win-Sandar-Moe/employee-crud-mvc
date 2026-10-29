@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}" 
+	xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+	<div class="container mt-5">
+		<div class="row">
+			<div class="offset-md-2 col-md-8">
+				<div class="card">
+					<div class="card-header">
+						<h5>Employee Form</h5>
+					</div>
+					<div class="card-body">
+						<form th:action="@{/add-employee}"
+						method="post" th:object="${employee}"
+						>
+						<div>
+							<input type="text" th:field="*{id}" hidden/>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">First Name</label>
+							<input type="text" 
+							th:field="*{firstName}"
+							th:classappend="${#fields.hasErrors('firstName')} ? 'is-invalid'"
+							class="form-control"/>
+							<small th:if="${#fields.hasErrors('firstName')}"
+							class="invalid-feedback" th:errors="*{firstName}"></small>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Last Name</label>
+							<input type="text" 
+							th:field="*{lastName}"
+							th:classappend="${#fields.hasErrors('lastName')} ? 'is-invalid'"
+							class="form-control"/>
+							<small th:if="${#fields.hasErrors('lastName')}"
+							class="invalid-feedback" th:errors="*{lastName}"></small>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Email</label>
+							<input type="text" 
+							th:field="*{email}"
+							th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
+							class="form-control"/>
+							<small th:if="${#fields.hasErrors('email')}"
+							class="invalid-feedback" th:errors="*{email}"></small>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">PhoneNumber</label>
+							<input type="text" 
+							th:field="*{phoneNumber}"
+							th:classappend="${#fields.hasErrors('phoneNumber')} ? 'is-invalid'"
+							class="form-control"/>
+							<small th:if="${#fields.hasErrors('phoneNumber')}"
+							class="invalid-feedback" th:errors="*{phoneNumber}"></small>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">HiredDate</label>
+							<input type="date" 
+							th:field="*{hiredDate}"
+							th:classappend="${#fields.hasErrors('hiredDate')} ? 'is-invalid'"
+							class="form-control"/>
+							<small th:if="${#fields.hasErrors('hiredDate')}"
+							class="invalid-feedback" th:errors="*{hiredDate}"></small>
+						</div>
+						<input type="submit" 
+						th:value="${employee.id == null} ? 'Add Employee':'Update Employee'"
+						class="btn btn-success w-100" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+</body>
+</html>
